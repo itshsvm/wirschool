@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توسعه وب با Flask - آموزش پایتون</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts - Inter (Consider a Persian font for better aesthetics) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* برای متن فارسی، یک فونت فارسی مناسب بهتر خواهد بود */
+            background-color: #f8f9fa;
+            color: #343a40;
+            direction: rtl; /* راست به چپ برای فارسی */
+            text-align: right; /* تراز متن به راست */
+        }
+        .navbar {
+            background-color: #343a40 !important; /* نوار ناوبری تیره‌تر */
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .nav-link:hover {
+            color: #cccccc !important;
+        }
+        .hero-section {
+            background: linear-gradient(to right, #007bff, #0056b3); /* گرادیان آبی */
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section p {
+            font-size: 1.15rem;
+        }
+        .content-section {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            right: 0; /* Changed from left to right for RTL */
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #007bff;
+            border-radius: 2px;
+        }
+        .content-section h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #343a40;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        pre {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            direction: ltr; /* Ensure code is LTR */
+            text-align: left; /* Ensure code is left-aligned */
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">مرکز پایتون</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">بازگشت به صفحه اصلی</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for the specific tutorial -->
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-4">توسعه وب با Flask در پایتون</h1>
+            <p class="lead">ساخت برنامه‌های وب سبک و کارآمد با استفاده از میکروفریم‌ورک Flask.</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <div class="content-section">
+            <h2>Flask چیست؟</h2>
+            <p>Flask یک میکروفریم‌ورک وب سبک (micro-framework) برای پایتون است. میکروفریم‌ورک به این معنی است که Flask ابزارهای هسته‌ای و ضروری برای توسعه وب را فراهم می‌کند، اما بسیاری از قابلیت‌ها (مانند لایه‌های پایگاه داده یا فرم‌ها) را به کتابخانه‌های خارجی واگذار می‌کند. این ویژگی Flask را بسیار انعطاف‌پذیر و قابل تنظیم برای انواع پروژه‌های وب، از APIهای کوچک گرفته تا برنامه‌های پیچیده‌تر، می‌سازد.</p>
+
+            <h3>چرا از Flask استفاده کنیم؟</h3>
+            <ul>
+                <li><strong>سادگی و سبکی:</strong> Flask یادگیری و استفاده آسانی دارد، به خصوص برای شروع‌کنندگان توسعه وب با پایتون.</li>
+                <li><strong>انعطاف‌پذیری:</strong> به دلیل طراحی ماژولار، شما کنترل کاملی بر روی اجزای مورد استفاده در پروژه خود دارید.</li>
+                <li><strong>مستندات عالی:</strong> مستندات جامع و مثال‌های فراوان به شما در حل مشکلات کمک می‌کند.</li>
+                <li><strong>جامعه فعال:</strong> یک جامعه بزرگ از توسعه‌دهندگان Flask وجود دارد که پشتیبانی و منابع زیادی را فراهم می‌کنند.</li>
+            </ul>
+
+            <h2>شروع به کار با Flask</h2>
+            <p>برای شروع کار با Flask، ابتدا باید آن را نصب کنید. توصیه می‌شود Flask را در یک محیط مجازی (virtual environment) نصب کنید تا وابستگی‌های پروژه شما جداگانه مدیریت شوند.</p>
+
+            <h3>1. راه‌اندازی محیط مجازی</h3>
+            <p>یک پوشه برای پروژه خود ایجاد کرده و سپس محیط مجازی را در آن راه‌اندازی کنید:</p>
+            <pre><code>
+mkdir my_flask_app
+cd my_flask_app
+python -m venv venv
+            </code></pre>
+            <p>برای فعال‌سازی محیط مجازی:</p>
+            <ul>
+                <li><strong>ویندوز:</strong></li>
+                <pre><code>venv\Scripts\activate</code></pre>
+                <li><strong>macOS/Linux:</strong></li>
+                <pre><code>source venv/bin/activate</code></pre>
+            </ul>
+
+            <h3>2. نصب Flask</h3>
+            <p>پس از فعال‌سازی محیط مجازی، Flask را با <code>pip</code> نصب کنید:</p>
+            <pre><code>
+pip install Flask
+            </code></pre>
+
+            <h2>اولین برنامه Flask شما: "Hello, World!"</h2>
+            <p>یک فایل به نام <code>app.py</code> (یا هر نام دلخواه دیگر) در پوشه پروژه خود ایجاد کرده و کد زیر را در آن بنویسید:</p>
+            <pre><code>
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return '<h1>سلام، دنیا از Flask!</h1>'
+
+if __name__ == '__main__':
+    app.run(debug=True)
+            </code></pre>
+            <p><strong>توضیح کد:</strong></p>
+            <ul>
+                <li><code>from flask import Flask</code>: کلاس <code>Flask</code> را از ماژول <code>flask</code> وارد می‌کنیم.</li>
+                <li><code>app = Flask(__name__)</code>: یک نمونه از کلاس <code>Flask</code> را ایجاد می‌کنیم. <code>__name__</code> به Flask می‌گوید که فایل فعلی ریشه برنامه است.</li>
+                <li><code>@app.route('/')</code>: این یک دکوراتور است که URL <code>/</code> (مسیر اصلی/ریشه) را به تابع <code>hello_world()</code> متصل می‌کند. هر زمان که کاربر به این آدرس مراجعه کند، این تابع اجرا می‌شود.</li>
+                <li><code>def hello_world():</code>: تابعی که پاسخ به درخواست وب را برمی‌گرداند. در اینجا، یک تگ <code>&lt;h1&gt;</code> HTML را برمی‌گردانیم.</li>
+                <li><code>if __name__ == '__main__':</code>: این خط تضمین می‌کند که سرور توسعه فقط زمانی اجرا شود که اسکریپت به طور مستقیم اجرا شده باشد (و نه زمانی که به عنوان یک ماژول وارد شده باشد).</li>
+                <li><code>app.run(debug=True)</code>: برنامه Flask را اجرا می‌کند. <code>debug=True</code> به Flask می‌گوید که در حالت اشکال‌زدایی (debug mode) اجرا شود، که خطاهای دقیق را نشان می‌دهد و برنامه را به طور خودکار پس از تغییر کد، راه‌اندازی مجدد می‌کند. (این حالت برای تولید توصیه نمی‌شود).</li>
+            </ul>
+
+            <h3>اجرای برنامه</h3>
+            <p>در خط فرمان، در حالی که محیط مجازی فعال است و در پوشه پروژه هستید، دستور زیر را اجرا کنید:</p>
+            <pre><code>
+python app.py
+            </code></pre>
+            <p>شما باید خروجی شبیه به این را مشاهده کنید:</p>
+            <pre><code>
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: XXX-XXX-XXX
+            </code></pre>
+            <p>اکنون مرورگر وب خود را باز کرده و به آدرس <code>http://127.0.0.1:5000/</code> مراجعه کنید. شما باید پیام "سلام، دنیا از Flask!" را در مرورگر خود مشاهده کنید.</p>
+
+            <h2>پویاسازی مسیرها (Routing with Variables)</h2>
+            <p>می‌توانید بخش‌هایی از URL را به عنوان متغیر به توابع خود ارسال کنید:</p>
+            <pre><code>
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return '<h1>به صفحه اصلی خوش آمدید!</h1>'
+
+@app.route('/user/&lt;username&gt;')
+def show_user_profile(username):
+    return f'<h2>پروفایل کاربر: {username}</h2>'
+
+@app.route('/post/&lt;int:post_id&gt;')
+def show_post(post_id):
+    return f'<h2>پست شماره: {post_id}</h2>'
+
+if __name__ == '__main__':
+    app.run(debug=True)
+            </code></pre>
+            <p>در این مثال:</p>
+            <ul>
+                <li><code>/user/&lt;username&gt;</code>: مقدار درون <code>&lt;username&gt;</code> به عنوان یک آرگومان رشته‌ای به تابع <code>show_user_profile</code> ارسال می‌شود.</li>
+                <li><code>/post/&lt;int:post_id&gt;</code>: مقدار درون <code>&lt;int:post_id&gt;</code> به عنوان یک آرگومان عدد صحیح به تابع <code>show_post</code> ارسال می‌شود.</li>
+            </ul>
+
+            <h2>استفاده از الگوها (Templates)</h2>
+            <p>برای ساخت صفحات وب پیچیده‌تر، Flask از موتور قالب‌بندی Jinja2 استفاده می‌کند. شما می‌توانید فایل‌های HTML خود را در پوشه‌ای به نام <code>templates</code> (که در کنار <code>app.py</code> قرار دارد) ذخیره کنید و از تابع <code>render_template</code> برای بازگرداندن آن‌ها استفاده کنید.</p>
+
+            <h3>ساخت فایل <code>templates/index.html</code>:</h3>
+            <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="fa" dir="rtl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;صفحه اصلی من&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;سلام، {{ name }}!&lt;/h1&gt;
+    &lt;p&gt;این یک صفحه نمونه با استفاده از Jinja2 است.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+
+            <h3>به‌روزرسانی <code>app.py</code>:</h3>
+            <pre><code>
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    user_name = "مهمان"
+    return render_template('index.html', name=user_name)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+            </code></pre>
+            <p>اکنون، وقتی به آدرس اصلی (<code>/</code>) بروید، Flask فایل <code>index.html</code> را رندر می‌کند و مقدار متغیر <code>name</code> را به آن ارسال می‌کند.</p>
+
+            <p>این یک مقدمه سریع بر توسعه وب با Flask بود. Flask ابزارهای بسیار بیشتری برای مدیریت درخواست‌ها، فرم‌ها، پایگاه‌های داده و موارد دیگر ارائه می‌دهد که می‌توانید با کاوش در مستندات رسمی Flask آن‌ها را بیاموزید.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 مرکز آموزش پایتون. تمامی حقوق محفوظ است.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN (Bundle with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcqGkUqQ6Jb6l8l+QfE+c+2S+J" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انواع داده‌ها و متغیرها - آموزش پایتون</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts - Inter (Consider a Persian font for better aesthetics) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* برای متن فارسی، یک فونت فارسی مناسب بهتر خواهد بود */
+            background-color: #f8f9fa;
+            color: #343a40;
+            direction: rtl; /* راست به چپ برای فارسی */
+            text-align: right; /* تراز متن به راست */
+        }
+        .navbar {
+            background-color: #343a40 !important; /* نوار ناوبری تیره‌تر */
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .nav-link:hover {
+            color: #cccccc !important;
+        }
+        .hero-section {
+            background: linear-gradient(to right, #007bff, #0056b3); /* گرادیان آبی */
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section p {
+            font-size: 1.15rem;
+        }
+        .content-section {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            right: 0; /* Changed from left to right for RTL */
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #007bff;
+            border-radius: 2px;
+        }
+        .content-section h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #343a40;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        pre {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            direction: ltr; /* Ensure code is LTR */
+            text-align: left; /* Ensure code is left-aligned */
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">مرکز پایتون</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">بازگشت به صفحه اصلی</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for the specific tutorial -->
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-4">انواع داده‌ها و متغیرها در پایتون</h1>
+            <p class="lead">درک بلوک‌های ساختاری داده در پایتون و نحوه کار با آن‌ها.</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <div class="content-section">
+            <h2>متغیرها در پایتون</h2>
+            <p>متغیرها در برنامه‌نویسی مانند ظرف‌هایی هستند که برای ذخیره مقادیر داده استفاده می‌شوند. در پایتون، نیازی به اعلام نوع متغیر قبل از استفاده از آن نیست؛ پایتون به صورت خودکار نوع را بر اساس مقداری که به آن اختصاص می‌دهید، تشخیص می‌دهد. متغیرها را می‌توان پس از اختصاص مقدار، تغییر داد.</p>
+            <h3>نام‌گذاری متغیرها</h3>
+            <ul>
+                <li>نام متغیر باید با یک حرف یا علامت زیرخط (underscore) شروع شود.</li>
+                <li>نمی‌تواند با یک عدد شروع شود.</li>
+                <li>فقط می‌تواند شامل حروف الفبا-عددی و زیرخط (<code>A-z, 0-9, and _</code>) باشد.</li>
+                <li>به حروف کوچک و بزرگ حساس است (<code>age</code>، <code>Age</code> و <code>AGE</code> سه متغیر متفاوت هستند).</li>
+            </ul>
+            <p><strong>مثال:</strong></p>
+            <pre><code>
+نام = "علی"
+سن = 30
+قیمت = 99.99
+is_active = True
+            </code></pre>
+
+            <h2>انواع داده‌ها در پایتون</h2>
+            <p>انواع داده‌ها، دسته‌بندی‌هایی هستند که مقادیری را که یک متغیر می‌تواند نگه دارد، تعیین می‌کنند. پایتون دارای انواع داده‌های داخلی مختلفی است که در ادامه به برخی از رایج‌ترین آن‌ها می‌پردازیم:</p>
+
+            <h3>1. اعداد (Numbers)</h3>
+            <p>پایتون سه نوع عددی را پشتیبانی می‌کند:</p>
+            <ul>
+                <li><strong>اعداد صحیح (<code>int</code>):</strong> اعداد کامل، مثبت یا منفی، بدون اعشار. می‌توانند به هر طولی باشند.</li>
+                <li><strong>اعداد اعشاری (<code>float</code>):</strong> اعداد اعشاری، مثبت یا منفی، شامل یک یا چند رقم اعشار.</li>
+                <li><strong>اعداد مختلط (<code>complex</code>):</strong> اعداد به فرم <code>a + bj</code> که <code>a</code> قسمت حقیقی و <code>bj</code> قسمت موهومی است.</li>
+            </ul>
+            <p><strong>مثال:</strong></p>
+            <pre><code>
+age = 25              # int
+pi_value = 3.14       # float
+complex_num = 1 + 2j  # complex
+            </code></pre>
+
+            <h3>2. رشته‌ها (Strings)</h3>
+            <p>رشته‌ها در پایتون دنباله‌ای از کاراکترها هستند که با کوتیشن تکی (<code>'</code>) یا دوتایی (<code>"</code>) احاطه شده‌اند. می‌توانید از کوتیشن سه‌گانه (<code>"""</code> یا <code>'''</code>) برای رشته‌های چندخطی استفاده کنید.</p>
+            <p><strong>مثال:</strong></p>
+            <pre><code>
+greeting = "سلام، دنیا!"
+name = 'مریم'
+multi_line_string = """این یک رشته
+چندخطی است."""
+            </code></pre>
+
+            <h3>3. بولین‌ها (Booleans)</h3>
+            <p>نوع داده بولین تنها دو مقدار ممکن دارد: <code>True</code> (درست) یا <code>False</code> (غلط). این مقادیر اغلب در عبارات شرطی و حلقه‌ها برای تصمیم‌گیری استفاده می‌شوند.</p>
+            <p><strong>مثال:</strong></p>
+            <pre><code>
+is_student = True
+has_license = False
+            </code></pre>
+
+            <h3>4. لیست‌ها (Lists)</h3>
+            <p>لیست‌ها مجموعه‌های مرتب و قابل تغییر از آیتم‌ها هستند. آیتم‌ها می‌توانند از انواع داده‌های مختلفی باشند و با کروشه (<code>[]</code>) تعریف می‌شوند.</p>
+            <p><strong>مثال:</strong></p>
+            <pre><code>
+fruits = ["سیب", "موز", "گیلاس"]
+numbers = [1, 2, 3, 4, 5]
+mixed_list = ["سلام", 123, True]
+            </code></pre>
+
+            <h3>5. تاپل‌ها (Tuples)</h3>
+            <p>تاپل‌ها مانند لیست‌ها هستند، اما غیرقابل تغییر (immutable) هستند. به این معنی که پس از ایجاد، نمی‌توانید آیتم‌های آن‌ها را تغییر دهید، اضافه کنید یا حذف کنید. با پرانتز (<code>()</code>) تعریف می‌شوند.</p>
+            <p><strong>مثال:</strong></p>
+            <pre><code>
+coordinates = (10.0, 20.0)
+colors = ("قرمز", "سبز", "آبی")
+            </code></pre>
+
+            <h3>6. مجموعه‌ها (Sets)</h3>
+            <p>مجموعه‌ها، مجموعه‌های نامرتب و بدون تکرار از آیتم‌ها هستند. با آکولاد (<code>{}</code>) تعریف می‌شوند، اما برای تعریف یک مجموعه خالی باید از <code>set()</code> استفاده کنید (زیرا <code>{}</code> یک دیکشنری خالی ایجاد می‌کند).</p>
+            <p><strong>مثال:</strong></p>
+            <pre><code>
+unique_numbers = {1, 2, 3, 2, 4} # {1, 2, 3, 4}
+vowels = {"a", "e", "i", "o", "u"}
+            </code></pre>
+
+            <h3>7. دیکشنری‌ها (Dictionaries)</h3>
+            <p>دیکشنری‌ها مجموعه‌های نامرتب از جفت‌های کلید-مقدار هستند. هر کلید باید منحصر به فرد باشد. با آکولاد (<code>{}</code>) تعریف می‌شوند.</p>
+            <p><strong>مثال:</strong></p>
+            <pre><code>
+person = {
+    "نام": "احمد",
+    "سن": 28,
+    "شهر": "تهران"
+}
+            </code></pre>
+            
+            <p>با درک این انواع داده‌های اساسی و نحوه استفاده از متغیرها، شما آماده‌اید تا منطق پیچیده‌تری را در برنامه‌های پایتون خود بسازید.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 مرکز آموزش پایتون. تمامی حقوق محفوظ است.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN (Bundle with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcqGkUqQ6Jb6l8l+QfE+c+2S+J" crossorigin="anonymous"></script>
+</body>
+</html>

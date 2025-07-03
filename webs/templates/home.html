@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آموزش پایتون - صفحه اصلی</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts - Inter (Consider a Persian font for better aesthetics) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* For Persian text, a suitable Persian font would be better */
+            background-color: #f8f9fa;
+            color: #343a40;
+            direction: rtl; /* Right-to-left for Persian */
+            text-align: right; /* Align text to the right */
+        }
+        .navbar {
+            background-color: #343a40 !important; /* Darker navbar */
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .nav-link:hover {
+            color: #cccccc !important;
+        }
+        .hero-section {
+            background: linear-gradient(to right, #007bff, #0056b3); /* Blue gradient */
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section h1 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
+            margin-bottom: 30px;
+            text-align: right; /* Align card content to the right */
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header {
+            background-color: #007bff; /* Primary blue for card headers */
+            color: white;
+            font-weight: 500;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 15px 20px;
+            text-align: right; /* Align card header text to the right */
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            border-radius: 25px;
+            padding: 10px 25px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #343a40;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #007bff;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">مرکز پایتون</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">صفحه اصلی</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#basics">مبانی</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#advanced">موضوعات پیشرفته</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#resources">منابع</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">تماس با ما</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-3">برنامه‌نویسی پایتون را بیاموزید</h1>
+            <p class="lead">راهنمای جامع شما برای یادگیری پایتون از پایه تا مفاهیم پیشرفته.</p>
+            <a href="#basics" class="btn btn-primary btn-lg">هم‌اکنون شروع به یادگیری کنید</a>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <!-- Python Basics Section -->
+        <section id="basics" class="mb-5">
+            <h2 class="section-title">مبانی پایتون</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">مقدمه‌ای بر پایتون</div>
+                        <div class="card-body">
+                            <h5 class="card-title">راه‌اندازی محیط شما</h5>
+                            <p class="card-text">بیاموزید چگونه پایتون را نصب کنید، محیط توسعه خود را راه‌اندازی کنید و اولین برنامه "Hello, World!" خود را اجرا کنید.</p>
+                            <a href="{% url 'basic-one' %}" class="btn btn-primary btn-sm">بیشتر بخوانید</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">انواع داده‌ها و متغیرها</div>
+                        <div class="card-body">
+                            <h5 class="card-title">درک انواع داده‌های اصلی پایتون</h5>
+                            <p class="card-text">به بررسی اعداد صحیح، اعشاری، رشته‌ها، بولین‌ها و نحوه تعریف و استفاده موثر از متغیرها بپردازید.</p>
+                            <a href="{% url 'basic-two' %}" class="btn btn-primary btn-sm">بیشتر بخوانید</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">جریان کنترل (If/Else, حلقه‌ها)</div>
+                        <div class="card-body">
+                            <h5 class="card-title">هوشمندتر کردن کد شما</h5>
+                            <p class="card-text">دستورات شرطی (if, elif, else) و تکرار (حلقه‌های for, while) را برای کنترل اجرای برنامه کاوش کنید.</p>
+                            <a href="{% url 'basic-three' %}" class="btn btn-primary btn-sm">بیشتر بخوانید</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Topics Section -->
+        <section id="advanced" class="mb-5">
+            <h2 class="section-title">موضوعات پیشرفته</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">برنامه‌نویسی شی‌گرا</div>
+                        <div class="card-body">
+                            <h5 class="card-title">کلاس‌ها، اشیاء، وراثت، چندریختی</h5>
+                            <p class="card-text">به اصول برنامه‌نویسی شی‌گرا در پایتون، از جمله کلاس‌ها، اشیاء و وراثت بپردازید.</p>
+                            <a href="{% url 'adv-one' %}" class="btn btn-primary btn-sm">بیشتر بخوانید</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">دکوراتورها و ژنراتورها</div>
+                        <div class="card-body">
+                            <h5 class="card-title">افزایش توابع و کارایی حافظه</h5>
+                            <p class="card-text">کشف کنید که چگونه دکوراتورها توابع را تغییر می‌دهند و ژنراتورها برای عملکرد بهتر، تکرارکننده‌ها را در لحظه ایجاد می‌کنند.</p>
+                            <a href="{% url 'adv-two' %}" class="btn btn-primary btn-sm">بیشتر بخوانید</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">توسعه وب با Flask</div>
+                        <div class="card-body">
+                            <h5 class="card-title">ساخت برنامه‌های وب</h5>
+                            <p class="card-text">مقدمه‌ای بر فریم‌ورک‌های وب محبوب پایتون برای توسعه برنامه‌های وب قدرتمند و مقیاس‌پذیر.</p>
+                            <a href="{% url 'adv-three' %}" class="btn btn-primary btn-sm">بیشتر بخوانید</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="mb-5">
+            <h2 class="section-title">منابع</h2>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">کتاب‌ها و دوره‌های پیشنهادی</div>
+                        <div class="card-body">
+                            <p class="card-text">فهرستی منتخب از بهترین کتاب‌ها، دوره‌های آنلاین و پلتفرم‌های تعاملی را برای پیشرفت در مسیر پایتون خود پیدا کنید.</p>
+                            <ul>
+                                <li>"Python Crash Course" نوشته اریک متیس</li>
+                                <li>"Automate the Boring Stuff with Python" نوشته آل سویگارت</li>
+                                <li>مسیر پایتون Codecademy</li>
+                                <li>آموزش‌های Real Python</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary btn-sm">همه منابع را کاوش کنید</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mb-5">
+            <h2 class="section-title">تماس با ما</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <p class="text-center mb-4">برای هرگونه سوال، پیشنهاد یا بازخورد، لطفا فرم زیر را پر کنید. ما به زودی با شما تماس خواهیم گرفت.</p>
+                    <form>
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">نام کامل</label>
+                            <input type="text" class="form-control" id="fullName" placeholder="نام خود را وارد کنید" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">آدرس ایمیل</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">موضوع</label>
+                            <input type="text" class="form-control" id="subject" placeholder="موضوع پیام شما" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">پیام شما</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="پیام خود را اینجا بنویسید" required></textarea>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">ارسال پیام</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 مرکز آموزش پایتون. تمامی حقوق محفوظ است.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN (Bundle with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcqGkUqQ6Jb6l8l+QfE+c+2S+J" crossorigin="anonymous"></script>
+</body>
+</html>

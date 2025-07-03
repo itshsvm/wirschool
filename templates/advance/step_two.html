@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دکوراتورها و ژنراتورها - آموزش پایتون</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts - Inter (Consider a Persian font for better aesthetics) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* برای متن فارسی، یک فونت فارسی مناسب بهتر خواهد بود */
+            background-color: #f8f9fa;
+            color: #343a40;
+            direction: rtl; /* راست به چپ برای فارسی */
+            text-align: right; /* تراز متن به راست */
+        }
+        .navbar {
+            background-color: #343a40 !important; /* نوار ناوبری تیره‌تر */
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .nav-link:hover {
+            color: #cccccc !important;
+        }
+        .hero-section {
+            background: linear-gradient(to right, #007bff, #0056b3); /* گرادیان آبی */
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section p {
+            font-size: 1.15rem;
+        }
+        .content-section {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            right: 0; /* Changed from left to right for RTL */
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #007bff;
+            border-radius: 2px;
+        }
+        .content-section h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #343a40;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        pre {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            direction: ltr; /* Ensure code is LTR */
+            text-align: left; /* Ensure code is left-aligned */
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">مرکز پایتون</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">بازگشت به صفحه اصلی</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for the specific tutorial -->
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-4">دکوراتورها و ژنراتورها در پایتون</h1>
+            <p class="lead">افزایش قابلیت‌های توابع و مدیریت حافظه با الگوهای پیشرفته پایتون.</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <div class="content-section">
+            <h2>دکوراتورها (Decorators) چیستند؟</h2>
+            <p>دکوراتورها توابعی هستند که به شما امکان می‌دهند رفتار یک تابع یا کلاس دیگر را بدون تغییر دائمی در کد اصلی آن، اصلاح یا گسترش دهید. آنها معمولاً با نماد <code>@</code> استفاده می‌شوند و راهی "بایگانی‌شده" (syntactic sugar) برای فراخوانی توابع بسته‌بندی (wrapper functions) هستند.</p>
+            <p>در واقع، یک دکوراتور یک تابع (یا کلاس) را به عنوان ورودی می‌گیرد و یک تابع (یا کلاس) جدید را به عنوان خروجی بازمی‌گرداند که معمولاً عملکرد اصلی را در بر می‌گیرد و قابلیت‌های اضافی را اضافه می‌کند.</p>
+
+            <h3>ساخت یک دکوراتور ساده</h3>
+            <p>مثالی از دکوراتوری که زمان اجرای یک تابع را اندازه‌گیری می‌کند:</p>
+            <pre><code>
+import time
+
+def timer_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"تابع '{func.__name__}' در {end_time - start_time:.4f} ثانیه اجرا شد.")
+        return result
+    return wrapper
+
+@timer_decorator
+def long_running_function():
+    """یک تابع نمونه که زمان زیادی می‌برد."""
+    time.sleep(2)
+    print("تابع اجرا شد.")
+
+@timer_decorator
+def add_numbers(a, b):
+    """تابعی برای جمع دو عدد."""
+    return a + b
+
+long_running_function()
+sum_result = add_numbers(5, 7)
+print(f"نتیجه جمع: {sum_result}")
+            </code></pre>
+            <p><strong>توضیح:</strong>
+            <ul>
+                <li><code>timer_decorator</code> تابعی است که <code>func</code> (تابعی که قرار است دکوریت شود) را به عنوان ورودی می‌گیرد.</li>
+                <li>داخل آن، یک تابع داخلی به نام <code>wrapper</code> تعریف شده است. این تابع <code>*args</code> و <code>**kwargs</code> را می‌پذیرد تا هر تعداد آرگومان را مدیریت کند.</li>
+                <li><code>wrapper</code> زمان شروع را ثبت می‌کند، تابع اصلی را اجرا می‌کند، زمان پایان را ثبت می‌کند و سپس زمان اجرا را چاپ می‌کند.</li>
+                <li><code>timer_decorator</code>، تابع <code>wrapper</code> را بازمی‌گرداند.</li>
+                <li>وقتی <code>@timer_decorator</code> را بالای <code>long_running_function</code> قرار می‌دهیم، این معادل با <code>long_running_function = timer_decorator(long_running_function)</code> است.</li>
+            </ul>
+            </p>
+
+            <h2>ژنراتورها (Generators) چیستند؟</h2>
+            <p>ژنراتورها توابعی هستند که با استفاده از کلمه کلیدی <code>yield</code> یک دنباله از آیتم‌ها را تولید می‌کنند، نه اینکه مانند توابع معمولی یک‌باره یک لیست یا تاپل کامل را بازگردانند. آنها یک نوع خاص از ایتریتور (iterator) هستند که فقط در صورت نیاز، آیتم‌ها را تولید می‌کنند. این کار باعث می‌شود ژنراتورها برای کار با دنباله‌های بسیار بزرگ یا بی‌نهایت کارآمد از نظر حافظه باشند.</p>
+
+            <h3>توابع ژنراتور</h3>
+            <p>هر تابعی که شامل حداقل یک دستور <code>yield</code> باشد، یک تابع ژنراتور است. وقتی تابع ژنراتور فراخوانی می‌شود، یک شیء ژنراتور بازمی‌گرداند، نه اینکه کد را بلافاصله اجرا کند.</p>
+            <h4>مثال: ژنراتور اعداد زوج</h4>
+            <pre><code>
+def even_numbers(limit):
+    n = 0
+    while n <= limit:
+        yield n
+        n += 2
+
+# استفاده از ژنراتور
+for num in even_numbers(10):
+    print(num)
+
+# یا به صورت دستی:
+my_even_generator = even_numbers(6)
+print(next(my_even_generator)) # 0
+print(next(my_even_generator)) # 2
+print(next(my_even_generator)) # 4
+            </code></pre>
+            <p><strong>توضیح:</strong>
+            <ul>
+                <li>وقتی <code>even_numbers(10)</code> فراخوانی می‌شود، تابع اجرا نمی‌شود، بلکه یک شیء ژنراتور برگردانده می‌شود.</li>
+                <li>هر بار که <code>next()</code> روی ژنراتور فراخوانی می‌شود (یا در حلقه <code>for</code> تکرار می‌شود)، کد در تابع ژنراتور تا رسیدن به دستور <code>yield</code> اجرا می‌شود.</li>
+                <li>مقدار کنار <code>yield</code> بازگردانده می‌شود و حالت تابع (شامل مقادیر متغیرهای محلی) حفظ می‌شود.</li>
+                <li>در فراخوانی بعدی <code>next()</code>، اجرا از همان جایی که <code>yield</code> قبلی متوقف شده بود، ادامه می‌یابد.</li>
+                <li>وقتی تابع ژنراتور تمام شود (یا به دستور <code>return</code> برسد)، یک استثناء <code>StopIteration</code> ایجاد می‌شود که نشان‌دهنده پایان تکرار است.</li>
+            </ul>
+            </p>
+
+            <h3>تفاوت اصلی: حافظه</h3>
+            <p>تفاوت کلیدی بین توابع معمولی که لیستی از نتایج را برمی‌گردانند و ژنراتورها در نحوه مدیریت حافظه است. توابع معمولی کل لیست را در حافظه ایجاد و ذخیره می‌کنند، در حالی که ژنراتورها آیتم‌ها را "درجا" (on the fly) تولید می‌کنند و فقط یک آیتم را در هر زمان در حافظه نگه می‌دارند. این باعث می‌شود ژنراتورها برای مجموعه داده‌های بزرگ یا جریان‌های داده نامحدود بسیار کارآمد باشند.</p>
+            <pre><code>
+# مثال با لیست (مصرف حافظه بالا برای اعداد زیاد)
+def create_list_of_numbers(n):
+    numbers = []
+    for i in range(n):
+        numbers.append(i)
+    return numbers
+
+# مثال با ژنراتور (مصرف حافظه کم)
+def generate_numbers(n):
+    for i in range(n):
+        yield i
+
+# تفاوت در مصرف حافظه
+list_of_millions = create_list_of_numbers(1000000) # کل 1 میلیون عدد در حافظه ذخیره می شود
+generator_of_millions = generate_numbers(1000000) # فقط یک عدد در هر زمان در حافظه است
+            </code></pre>
+
+            <p>دکوراتورها و ژنراتورها ابزارهای قدرتمندی هستند که به شما کمک می‌کنند کد پایتون ماژولارتر، خواناتر و کارآمدتر (به خصوص از نظر حافظه) بنویسید.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 مرکز آموزش پایتون. تمامی حقوق محفوظ است.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN (Bundle with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcqGkUqQ6Jb6l8l+QfE+c+2S+J" crossorigin="anonymous"></script>
+</body>
+</html>

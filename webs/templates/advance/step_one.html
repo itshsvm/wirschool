@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامه‌نویسی شی‌گرا - آموزش پایتون</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts - Inter (Consider a Persian font for better aesthetics) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* برای متن فارسی، یک فونت فارسی مناسب بهتر خواهد بود */
+            background-color: #f8f9fa;
+            color: #343a40;
+            direction: rtl; /* راست به چپ برای فارسی */
+            text-align: right; /* تراز متن به راست */
+        }
+        .navbar {
+            background-color: #343a40 !important; /* نوار ناوبری تیره‌تر */
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .nav-link:hover {
+            color: #cccccc !important;
+        }
+        .hero-section {
+            background: linear-gradient(to right, #007bff, #0056b3); /* گرادیان آبی */
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section p {
+            font-size: 1.15rem;
+        }
+        .content-section {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            right: 0; /* Changed from left to right for RTL */
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #007bff;
+            border-radius: 2px;
+        }
+        .content-section h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #343a40;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        pre {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            direction: ltr; /* Ensure code is LTR */
+            text-align: left; /* Ensure code is left-aligned */
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">مرکز پایتون</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">بازگشت به صفحه اصلی</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for the specific tutorial -->
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-4">برنامه‌نویسی شی‌گرا در پایتون</h1>
+            <p class="lead">درک کلاس‌ها، اشیاء و اصول OOP برای ساخت برنامه‌های قدرتمندتر.</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <div class="content-section">
+            <h2>برنامه‌نویسی شی‌گرا (OOP) چیست؟</h2>
+            <p>برنامه‌نویسی شی‌گرا (Object-Oriented Programming - OOP) یک پارادایم برنامه‌نویسی است که بر مفهوم "شیء" مبتنی است. این اشیاء می‌توانند حاوی داده‌ها (ویژگی‌ها/properties) و کد (متدها/methods) باشند. هدف اصلی OOP سازماندهی کد به گونه‌ای است که مدل‌سازی موجودیت‌های دنیای واقعی را آسان‌تر کند و قابلیت استفاده مجدد، نگهداری و مقیاس‌پذیری کد را افزایش دهد.</p>
+            <p>چهار اصل اساسی OOP عبارتند از:</p>
+            <ul>
+                <li><strong>کپسوله‌سازی (Encapsulation):</strong> بسته‌بندی داده‌ها و متدهایی که بر روی آن داده‌ها عمل می‌کنند در یک واحد (کلاس).</li>
+                <li><strong>وراثت (Inheritance):</strong> توانایی یک کلاس (کلاس فرزند) برای به ارث بردن ویژگی‌ها و متدها از کلاس دیگر (کلاس والد).</li>
+                <li><strong>چندریختی (Polymorphism):</strong> توانایی اشیاء مختلف برای به اشتراک گذاشتن یک رابط مشترک، اما پیاده‌سازی متفاوتی از آن.</li>
+                <li><strong>انتزاع (Abstraction):</strong> نمایش تنها اطلاعات ضروری و پنهان کردن جزئیات پیاده‌سازی پیچیده.</li>
+            </ul>
+
+            <h2>کلاس‌ها و اشیاء</h2>
+            <h3>کلاس (Class)</h3>
+            <p>یک کلاس مانند یک طرح (blueprint) یا قالب برای ایجاد اشیاء است. این یک ساختار منطقی است که ویژگی‌ها (متغیرها) و رفتارها (توابع/متدها) را تعریف می‌کند که اشیاء ایجاد شده از آن کلاس خواهند داشت.</p>
+            <p>برای تعریف یک کلاس از کلمه کلیدی <code>class</code> استفاده می‌کنیم:</p>
+            <pre><code>
+class Car:
+    pass # یک کلاس خالی برای شروع
+            </code></pre>
+
+            <h3>شیء (Object)</h3>
+            <p>یک شیء (که به آن نمونه نیز گفته می‌شود) یک نمونه از یک کلاس است. وقتی کلاسی را تعریف می‌کنید، فقط یک طرح ایجاد می‌کنید. برای استفاده از کلاس، باید یک شیء (نمونه) از آن ایجاد کنید.</p>
+            <pre><code>
+my_car = Car() # ایجاد یک شیء (نمونه) از کلاس Car
+print(my_car)
+            </code></pre>
+
+            <h2>ویژگی‌ها و متدها</h2>
+            <h3>ویژگی‌ها (Attributes)</h3>
+            <p>ویژگی‌ها متغیرهایی هستند که داده‌ها را برای یک شیء خاص نگه می‌دارند. هر شیء می‌تواند مقادیر ویژگی‌های خاص خود را داشته باشد.</p>
+
+            <h3>متدها (Methods)</h3>
+            <p>متدها توابعی هستند که در داخل یک کلاس تعریف می‌شوند و بر روی داده‌های مربوط به شیء عمل می‌کنند. آنها رفتارهای یک شیء را تعریف می‌کنند.</p>
+
+            <h2>سازنده <code>__init__</code></h2>
+            <p>متد <code>__init__</code> یک متد خاص است که به آن سازنده (constructor) گفته می‌شود. این متد به صورت خودکار هر زمان که یک شیء جدید از کلاس ایجاد می‌شود، فراخوانی می‌شود. از آن برای مقداردهی اولیه ویژگی‌های شیء استفاده می‌شود.</p>
+            <p>پارامتر <code>self</code> در متدهای کلاس به نمونه فعلی کلاس اشاره دارد و باید اولین پارامتر هر متد باشد.</p>
+            <pre><code>
+class Dog:
+    # سازنده کلاس
+    def __init__(self, name, age):
+        self.name = name # ویژگی
+        self.age = age   # ویژگی
+
+    # متد
+    def bark(self):
+        return f"{self.name} واق واق می کند!"
+
+# ایجاد اشیاء از کلاس Dog
+dog1 = Dog("لوسی", 3)
+dog2 = Dog("ماکس", 5)
+
+print(f"{dog1.name} {dog1.age} ساله است.")
+print(f"{dog2.name} {dog2.age} ساله است.")
+print(dog1.bark())
+            </code></pre>
+            <p><strong>خروجی:</strong></p>
+            <pre><code>
+لوسی 3 ساله است.
+ماکس 5 ساله است.
+لوسی واق واق می کند!
+            </code></pre>
+
+            <h2>وراثت (Inheritance)</h2>
+            <p>وراثت به یک کلاس اجازه می‌دهد تا ویژگی‌ها و متدهای کلاس دیگری را به ارث ببرد. کلاسی که به ارث می‌برد (کلاس فرزند/مشتق) می‌تواند ویژگی‌ها و متدهای جدیدی اضافه کند یا متدهای والد را بازنویسی (override) کند. این کار قابلیت استفاده مجدد از کد را افزایش می‌دهد.</p>
+            <pre><code>
+# کلاس والد
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        pass # متد انتزاعی یا پایه
+
+# کلاس فرزند از Animal ارث می‌برد
+class Cat(Animal):
+    def speak(self):
+        return f"{self.name} میو میو می کند."
+
+class Cow(Animal):
+    def speak(self):
+        return f"{self.name} ماغ می کشد."
+
+cat = Cat("پیشی")
+cow = Cow("گاوی")
+
+print(cat.speak())
+print(cow.speak())
+            </code></pre>
+            <p><strong>خروجی:</strong></p>
+            <pre><code>
+پیشی میو میو می کند.
+گاوی ماغ می کشد.
+            </code></pre>
+
+            <h2>چندریختی (Polymorphism)</h2>
+            <p>چندریختی به معنی "اشکال مختلف" است. در OOP، این اصل به متدهای مختلفی (در کلاس‌های مختلف) با نام یکسان اشاره دارد که می‌توانند رفتارهای متفاوتی را بسته به شیئی که آن‌ها را فراخوانی می‌کند، از خود نشان دهند. مثال بالا از <code>speak()</code> یک نمونه ساده از چندریختی است.</p>
+
+            <h2>کپسوله‌سازی (Encapsulation)</h2>
+            <p>کپسوله‌سازی به مفهوم بسته‌بندی داده‌ها و متدهایی که بر روی آن داده‌ها عمل می‌کنند در یک واحد (کلاس) اشاره دارد. همچنین، به پنهان کردن جزئیات داخلی یک شیء و کنترل دسترسی به داده‌ها از خارج از کلاس کمک می‌کند.</p>
+            <p>در پایتون، هیچ مفهوم <code>private</code> یا <code>public</code> سختگیرانه‌ای وجود ندارد. اما با استفاده از پیشوندهای زیرخط (<code>_</code> و <code>__</code>) می‌توانیم قصد خود را برای ویژگی‌های "محافظت شده" یا "خصوصی" نشان دهیم.</p>
+            <pre><code>
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance # ویژگی "خصوصی" (با توافق)
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"واریز {amount} انجام شد. موجودی جدید: {self.__balance}")
+        else:
+            print("مبلغ واریزی باید مثبت باشد.")
+
+    def get_balance(self):
+        return self.__balance
+
+account = BankAccount(100)
+account.deposit(50)
+print(f"موجودی فعلی: {account.get_balance()}")
+# تلاش برای دسترسی مستقیم به ویژگی "خصوصی" (توصیه نمی شود)
+# print(account.__balance) # این خطا خواهد داد
+print(account._BankAccount__balance) # می توان به این روش دسترسی پیدا کرد اما توصیه نمی شود
+            </code></pre>
+
+            <h2>انتزاع (Abstraction)</h2>
+            <p>انتزاع به فرآیند پنهان کردن جزئیات پیاده‌سازی و نشان دادن تنها اطلاعات ضروری به کاربر (برنامه‌نویس) اشاره دارد. این کار پیچیدگی سیستم را کاهش می‌دهد و استفاده از آن را آسان‌تر می‌کند. در پایتون، می‌توان از کلاس‌های انتزاعی و متدهای انتزاعی (با استفاده از ماژول <code>abc</code>) برای اعمال انتزاع استفاده کرد.</p>
+            <pre><code>
+from abc import ABC, abstractmethod
+
+class Shape(ABC): # کلاس انتزاعی
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius * self.radius
+
+    def perimeter(self):
+        return 2 * 3.14 * self.radius
+
+# shape = Shape() # نمی توانید از یک کلاس انتزاعی نمونه بسازید
+
+circle = Circle(5)
+print(f"مساحت دایره: {circle.area()}")
+print(f"محیط دایره: {circle.perimeter()}")
+            </code></pre>
+            <p><strong>خروجی:</strong></p>
+            <pre><code>
+مساحت دایره: 78.5
+محیط دایره: 31.400000000000002
+            </code></pre>
+
+            <p>با یادگیری این مفاهیم OOP، می‌توانید کدی ساختاریافته‌تر، قابل نگهداری‌تر و مقیاس‌پذیرتر در پایتون بنویسید.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 مرکز آموزش پایتون. تمامی حقوق محفوظ است.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN (Bundle with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcqGkUqQ6Jb6l8l+QfE+c+2S+J" crossorigin="anonymous"></script>
+</body>
+</html>

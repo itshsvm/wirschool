@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جریان کنترل: شرطی‌ها (If, Else) - آموزش پایتون</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts - Inter (Consider a Persian font for better aesthetics) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* برای متن فارسی، یک فونت فارسی مناسب بهتر خواهد بود */
+            background-color: #f8f9fa;
+            color: #343a40;
+            direction: rtl; /* راست به چپ برای فارسی */
+            text-align: right; /* تراز متن به راست */
+        }
+        .navbar {
+            background-color: #343a40 !important; /* نوار ناوبری تیره‌تر */
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .nav-link:hover {
+            color: #cccccc !important;
+        }
+        .hero-section {
+            background: linear-gradient(to right, #007bff, #0056b3); /* گرادیان آبی */
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section p {
+            font-size: 1.15rem;
+        }
+        .content-section {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            right: 0; /* Changed from left to right for RTL */
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #007bff;
+            border-radius: 2px;
+        }
+        .content-section h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #343a40;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        pre {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            direction: ltr; /* Ensure code is LTR */
+            text-align: left; /* Ensure code is left-aligned */
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">مرکز پایتون</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">بازگشت به صفحه اصلی</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for the specific tutorial -->
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-4">جریان کنترل: شرطی‌ها در پایتون</h1>
+            <p class="lead">تصمیم‌گیری در برنامه‌های خود با استفاده از <code>if</code>، <code>elif</code> و <code>else</code>.</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <div class="content-section">
+            <h2>جریان کنترل چیست؟</h2>
+            <p>جریان کنترل به ترتیبی اشاره دارد که دستورات در یک برنامه کامپیوتری اجرا می‌شوند. در پایتون، دستورات جریان کنترل به شما امکان می‌دهند که برنامه‌های خود را پویا و هوشمند کنید، به طوری که بر اساس شرایط مختلف، مسیرهای متفاوتی را طی کنند. دو دسته اصلی از دستورات جریان کنترل وجود دارد: شرطی‌ها و حلقه‌ها.</p>
+            <p>این درس بر دستورات شرطی تمرکز دارد. برای یادگیری در مورد حلقه‌ها، می‌توانید به صفحه <a href="جریان حلقه ها.html">جریان کنترل: حلقه‌ها</a> مراجعه کنید.</p>
+
+            <h3>دستور <code>if</code></h3>
+            <p>دستور <code>if</code> برای اجرای یک بلوک کد تنها در صورتی که یک شرط خاص <code>True</code> باشد، استفاده می‌شود. اگر شرط <code>False</code> باشد، بلوک کد <code>if</code> نادیده گرفته می‌شود.</p>
+            <h4>ساختار دستور <code>if</code>:</h4>
+            <pre><code>
+if شرط:
+    # بلوک کدی که اگر شرط True باشد اجرا می‌شود
+            </code></pre>
+            <h4>مثال:</h4>
+            <pre><code>
+سن = 18
+if سن >= 18:
+    print("شما مجاز به رای دادن هستید.")
+            </code></pre>
+            <p><strong>خروجی:</strong></p>
+            <pre><code>
+شما مجاز به رای دادن هستید.
+            </code></pre>
+
+            <h3>دستور <code>else</code></h3>
+            <p>دستور <code>else</code> اغلب با <code>if</code> استفاده می‌شود. این دستور یک بلوک کد را زمانی اجرا می‌کند که شرط <code>if</code> اولیه <code>False</code> باشد.</p>
+            <h4>ساختار دستور <code>if...else</code>:</h4>
+            <pre><code>
+if شرط:
+    # بلوک کدی که اگر شرط True باشد اجرا می‌شود
+else:
+    # بلوک کدی که اگر شرط False باشد اجرا می‌شود
+            </code></pre>
+            <h4>مثال:</h4>
+            <pre><code>
+نمره = 75
+if نمره >= 60:
+    print("شما قبول شدید!")
+else:
+    print("متاسفانه، شما مردود شدید.")
+            </code></pre>
+            <p><strong>خروجی:</strong></p>
+            <pre><code>
+شما قبول شدید!
+            </code></pre>
+
+            <h3>دستور <code>elif</code> (Else If)</h3>
+            <p>دستور <code>elif</code> (کوتاه شده "else if") به شما امکان می‌دهد چندین شرط را بررسی کنید. اگر شرط <code>if</code> اولیه <code>False</code> باشد، پایتون شرط <code>elif</code> را بررسی می‌کند و این روند تا زمانی که یک شرط <code>True</code> پیدا شود ادامه می‌یابد.</p>
+            <h4>ساختار دستور <code>if...elif...else</code>:</h4>
+            <pre><code>
+if شرط1:
+    # بلوک کد برای شرط1
+elif شرط2:
+    # بلوک کد برای شرط2
+elif شرط3:
+    # بلوک کد برای شرط3
+else:
+    # بلوک کد اگر هیچ یک از شرایط بالا True نباشد
+            </code></pre>
+            <h4>مثال: سیستم درجه‌بندی</h4>
+            <pre><code>
+درجه = 85
+
+if درجه >= 90:
+    print("درجه شما: الف")
+elif درجه >= 80:
+    print("درجه شما: ب")
+elif درجه >= 70:
+    print("درجه شما: ج")
+elif درجه >= 60:
+    print("درجه شما: د")
+else:
+    print("درجه شما: و")
+            </code></pre>
+            <p><strong>خروجی:</strong></p>
+            <pre><code>
+درجه شما: ب
+            </code></pre>
+
+            <h3>عملگرهای مقایسه‌ای</h3>
+            <p>شرط‌ها در دستورات <code>if</code>، <code>elif</code> و <code>else</code> از عملگرهای مقایسه‌ای برای ارزیابی روابط بین مقادیر استفاده می‌کنند:</p>
+            <ul>
+                <li><code>==</code>: برابر با</li>
+                <li><code>!=</code>: نابرابر با</li>
+                <li><code>></code>: بزرگتر از</li>
+                <li><code><</code>: کوچکتر از</li>
+                <li><code>>=</code>: بزرگتر یا مساوی با</li>
+                <li><code><=</code>: کوچکتر یا مساوی با</li>
+            </ul>
+
+            <h3>عملگرهای منطقی (Logical Operators)</h3>
+            <p>برای ترکیب چندین شرط، می‌توانید از عملگرهای منطقی استفاده کنید:</p>
+            <ul>
+                <li><code>and</code>: اگر هر دو شرط <code>True</code> باشند، نتیجه <code>True</code> است.</li>
+                <li><code>or</code>: اگر حداقل یکی از شرط‌ها <code>True</code> باشد، نتیجه <code>True</code> است.</li>
+                <li><code>not</code>: نتیجه شرط را برعکس می‌کند (<code>True</code> را <code>False</code> و <code>False</code> را <code>True</code> می‌کند).</li>
+            </ul>
+            <h4>مثال:</h4>
+            <pre><code>
+سن = 25
+کشور = "ایران"
+
+if سن >= 18 and کشور == "ایران":
+    print("مجاز به رانندگی در ایران هستید.")
+
+has_ticket = True
+is_vip = False
+
+if has_ticket or is_vip:
+    print("شما می‌توانید وارد شوید.")
+
+is_raining = True
+if not is_raining:
+    print("امروز هوا آفتابی است.")
+else:
+    print("باران می‌بارد.")
+            </code></pre>
+
+            <p>با درک دستورات شرطی، شما توانایی ایجاد برنامه‌هایی را خواهید داشت که می‌توانند بر اساس ورودی‌ها یا شرایط مختلف تصمیم‌گیری کرده و به صورت هوشمندانه عمل کنند.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 مرکز آموزش پایتون. تمامی حقوق محفوظ است.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN (Bundle with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcqGkUqQ6Jb6l8l+QfE+c+2S+J" crossorigin="anonymous"></script>
+</body>
+</html>
