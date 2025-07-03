@@ -1,0 +1,8 @@
+Package           Version
+----------------- -------
+asgiref           3.8.1
+Django            5.2.3
+pip               25.1.1
+setuptools        80.9.0
+sqlparse          0.5.3
+typing_extensions 4.14.0
